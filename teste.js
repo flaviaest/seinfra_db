@@ -1,15 +1,12 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
+
 const prisma = new PrismaClient();
 
 async function main() {
-  const usuarios = await prisma.usuario.findMany();  // Substitua 'cliente' pelo nome da sua tabela
-  console.log(usuarios);
+  const users = await prisma.usuarios.findMany();
+  console.log(users);
 }
 
 main()
-  .catch(e => {
-    throw e;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .catch(e => console.error(e))
+  .finally(() => prisma.$disconnect());
